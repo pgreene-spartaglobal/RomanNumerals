@@ -13,8 +13,23 @@ namespace RomanNumerals
             RomanNumeralConverter rnc = new RomanNumeralConverter();
 
             Console.WriteLine("Roman Numerals");
-            string line = Console.ReadLine();
-            Console.WriteLine(rnc.RomanNumeralToInt(line));
+            Console.WriteLine("Would you like to \n1. IntToRomanNumeral\n2. RomanNumeralToInt");
+            string selection = Console.ReadLine();
+            switch (selection)
+            {
+                case "1":
+                    Console.WriteLine("Enter an int: ");
+                    int inputIntValue = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine(rnc.IntToRomanNumeral(inputIntValue));
+                    break;
+                case "2":
+                    Console.WriteLine("Enter a roman numeral: ");
+                    string inputRomanNumeral = Console.ReadLine().ToUpper();
+                    Console.WriteLine(rnc.RomanNumeralToInt(inputRomanNumeral));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -40,6 +55,11 @@ namespace RomanNumerals
         {
             string result = "";
             int index = 0; 
+
+            if (value == 0)
+            {
+                return "NULLA";
+            }
 
             while (value > 0)
             {
