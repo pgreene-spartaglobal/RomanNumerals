@@ -34,17 +34,22 @@ namespace RomanNumerals
         public string IntToRomanNumeral(int value)
         {
             string result = "";
-            int i = 0;
+            int index = 0; 
+
             while (value > 0)
             {
-                if (value - numerals.ElementAt(i).Key >= 0)
+                // Check that the value can be subtracted by the dictionary value
+                if (value - numerals.ElementAt(index).Key >= 0)
                 {
-                    result += numerals.ElementAt(i).Value;
-                    value -= numerals.ElementAt(i).Key;
+                    // Add the roman numeral value to the string result
+                    result += numerals.ElementAt(index).Value;
+
+                    // Subtract the numeric value from our current value
+                    value -= numerals.ElementAt(index).Key;
                 }
                 else
                 {
-                    i++;
+                    index++;
                 }
             }
             return result;
@@ -52,7 +57,26 @@ namespace RomanNumerals
 
         public int RomanNumeralToInt(string numeral)
         {
-            return 0;
+            int result = 0;
+            int currentIndexValue = 0;
+            int nextIndexValue = 0;
+
+            for (int i = 0; i < numeral.Length - 1; i++)
+            {
+                currentIndexValue = numerals.FirstOrDefault(ci => ci.Value == numeral[i].ToString()).Key;
+                nextIndexValue = numerals.FirstOrDefault(ni => ni.Value == numeral[i + 1].ToString()).Key;
+                                
+                // If the symbol appears before a larger symbol it is subtracted
+                if (nextIndexValue > currentIndexValue)
+                {
+                    result += nextIndexValue - currentIndexValue;
+                }
+                else
+                {
+                    result += currentIndexValue;
+                }
+            }
+            return result;
         }
     }
 }
