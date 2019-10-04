@@ -14,7 +14,7 @@ namespace RomanNumerals.Test
         [Test]
         public void TestIntToRomanNumeral()
         {
-            Assert.AreEqual("IV", rnc.IntToRomanNumeral(4));
+            Assert.AreEqual("MMXIX", rnc.IntToRomanNumeral(2019));
         }
 
         [Test]

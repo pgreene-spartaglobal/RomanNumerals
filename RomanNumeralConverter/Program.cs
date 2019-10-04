@@ -33,7 +33,21 @@ namespace RomanNumerals
         };
         public string IntToRomanNumeral(int value)
         {
-            return "";
+            string result = "";
+            int i = 0;
+            while (value > 0)
+            {
+                if (value - numerals.ElementAt(i).Key >= 0)
+                {
+                    result += numerals.ElementAt(i).Value;
+                    value -= numerals.ElementAt(i).Key;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            return result;
         }
 
         public int RomanNumeralToInt(string numeral)
