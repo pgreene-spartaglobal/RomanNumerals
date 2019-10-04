@@ -20,7 +20,7 @@ namespace RomanNumerals.Test
         [Test]
         public void TestRomanNumeralToInt()
         {
-            Assert.AreEqual(2019, rnc.RomanNumeralToInt("MMXIX"));
+            Assert.AreEqual(44, rnc.RomanNumeralToInt("XLIV"));
         }
     }
 }

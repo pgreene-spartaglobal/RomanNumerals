@@ -10,6 +10,11 @@ namespace RomanNumerals
     {
         static void Main(string[] args)
         {
+            RomanNumeralConverter rnc = new RomanNumeralConverter();
+
+            Console.WriteLine("Roman Numerals");
+            string line = Console.ReadLine();
+            Console.WriteLine(rnc.RomanNumeralToInt(line));
         }
     }
 
@@ -61,15 +66,22 @@ namespace RomanNumerals
             int currentIndexValue = 0;
             int nextIndexValue = 0;
 
-            for (int i = 0; i < numeral.Length - 1; i++)
+            for (int i = 0; i < numeral.Length; i++)
             {
                 currentIndexValue = numerals.FirstOrDefault(ci => ci.Value == numeral[i].ToString()).Key;
-                nextIndexValue = numerals.FirstOrDefault(ni => ni.Value == numeral[i + 1].ToString()).Key;
+                if (i != numeral.Length - 1)
+                {
+                    nextIndexValue = numerals.FirstOrDefault(ni => ni.Value == numeral[i + 1].ToString()).Key;
+                }
+                else
+                {
+                    nextIndexValue = 0;
+                }
                                 
                 // If the symbol appears before a larger symbol it is subtracted
                 if (nextIndexValue > currentIndexValue)
                 {
-                    result += nextIndexValue - currentIndexValue;
+                    result -= currentIndexValue;
                 }
                 else
                 {
